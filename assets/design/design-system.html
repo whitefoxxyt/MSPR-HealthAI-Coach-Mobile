@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VITÁL — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ─── COULEURS PRIMAIRES ─── */
+    --cream:      #F5F0E8;
+    --cream-2:    #EDE7D9;
+    --acid:       #C8FF47;
+    --acid-dark:  #9ED626;
+    --onyx:       #141414;
+    --onyx-2:     #1E1E1E;
+
+    /* ─── COULEURS NEUTRES ─── */
+    --gray-100:   #F0EBE2;
+    --gray-200:   #DDD6C8;
+    --gray-400:   #9A9188;
+    --gray-600:   #5C564E;
+    --gray-800:   #2A2520;
+
+    /* ─── ACCENT ─── */
+    --coral:      #FF6B4A;
+    --sky:        #6BE8FF;
+    --mint:       #4AFFB4;
+
+    /* ─── TYPO ─── */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'Space Grotesk', sans-serif;
+
+    /* ─── SPACING ─── */
+    --sp-xs:  4px;
+    --sp-sm:  8px;
+    --sp-md:  16px;
+    --sp-lg:  24px;
+    --sp-xl:  40px;
+    --sp-2xl: 64px;
+
+    /* ─── RADIUS ─── */
+    --r-sm:   8px;
+    --r-md:   16px;
+    --r-lg:   24px;
+    --r-xl:   32px;
+    --r-pill: 999px;
+
+    /* ─── SHADOWS ─── */
+    --shadow-sm: 0 2px 8px rgba(20,20,20,0.06);
+    --shadow-md: 0 8px 32px rgba(20,20,20,0.10);
+    --shadow-lg: 0 24px 64px rgba(20,20,20,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--onyx);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .ds-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  /* ── HEADER ── */
+  .ds-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1.5px solid var(--gray-200);
+  }
+  .ds-logo {
+    font-family: var(--font-display);
+    font-size: 80px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .ds-logo span { color: var(--acid-dark); }
+  .ds-meta {
+    text-align: right;
+    color: var(--gray-600);
+    font-size: 13px;
+    line-height: 2;
+    font-family: var(--font-mono);
+  }
+
+  /* ── SECTION ── */
+  .ds-section {
+    margin-bottom: 72px;
+  }
+  .ds-section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ds-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+  .ds-section-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
+  }
+
+  /* ── COLOR GRID ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+  }
+  .color-swatch {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch-block {
+    height: 80px;
+    position: relative;
+  }
+  .swatch-info {
+    padding: 10px 12px;
+    background: white;
+  }
+  .swatch-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--onyx);
+    display: block;
+  }
+  .swatch-hex {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+  .swatch-var {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-400);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .typo-grid {
+    display: grid;
+    gap: 32px;
+  }
+  .typo-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .typo-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+  .typo-meta strong { color: var(--onyx); font-size: 12px; display: block; margin-bottom: 4px; }
+
+  /* ── SPACING ── */
+  .spacing-grid { display: flex; flex-direction: column; gap: 12px; }
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .spacing-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+  .spacing-bar {
+    background: var(--acid);
+    height: 12px;
+    border-radius: 2px;
+  }
+  .spacing-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-600);
+    width: 80px;
+  }
+  .spacing-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-400);
+    width: 36px;
+  }
+
+  /* ── RADIUS ── */
+  .radius-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .radius-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .radius-box {
+    width: 72px;
+    height: 72px;
+    background: var(--onyx);
+  }
+  .radius-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-600);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ── COMPONENTS ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .comp-card {
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+  }
+  .comp-card-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+  }
+  .comp-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .comp-preview.row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0 24px;
+    height: 48px;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.2px;
+  }
+  .btn-primary { background: var(--onyx); color: var(--acid); }
+  .btn-primary:hover { background: var(--onyx-2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(20,20,20,0.2); }
+  .btn-acid { background: var(--acid); color: var(--onyx); }
+  .btn-acid:hover { background: var(--acid-dark); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--onyx); border: 1.5px solid var(--onyx); }
+  .btn-ghost { background: var(--gray-100); color: var(--onyx); }
+  .btn-sm { height: 36px; padding: 0 16px; font-size: 13px; }
+  .btn-lg { height: 56px; padding: 0 32px; font-size: 16px; }
+
+  /* ── INPUTS ── */
+  .input-field {
+    width: 100%;
+    height: 52px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--r-md);
+    padding: 0 16px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    background: white;
+    color: var(--onyx);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .input-field:focus { border-color: var(--onyx); }
+  .input-field.focused { border-color: var(--onyx); }
+  .input-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 6px;
+    display: block;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .input-wrap { display: flex; flex-direction: column; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+  }
+  .badge-acid { background: var(--acid); color: var(--onyx); }
+  .badge-onyx { background: var(--onyx); color: var(--acid); }
+  .badge-coral { background: #FFE8E3; color: var(--coral); }
+  .badge-sky { background: #E3F9FF; color: #0099BB; }
+  .badge-mint { background: #E0FFF5; color: #00885A; }
+  .badge-neutral { background: var(--gray-100); color: var(--gray-600); }
+
+  /* ── METRIC CARD ── */
+  .metric-card {
+    background: var(--onyx);
+    color: var(--cream);
+    border-radius: var(--r-xl);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: var(--acid);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .metric-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-400); }
+  .metric-value { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -2px; line-height: 1; margin: 8px 0 4px; }
+  .metric-value span { font-size: 18px; font-weight: 400; color: var(--gray-400); }
+  .metric-change { font-size: 12px; color: var(--acid); font-weight: 600; }
+
+  /* ── MEAL CARD ── */
+  .meal-card {
+    background: white;
+    border-radius: var(--r-xl);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--gray-100);
+    box-shadow: var(--shadow-sm);
+  }
+  .meal-img {
+    width: 56px; height: 56px;
+    border-radius: var(--r-md);
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .meal-info { flex: 1; }
+  .meal-name { font-weight: 600; font-size: 15px; color: var(--onyx); }
+  .meal-cal { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
+  .meal-macro {
+    display: flex; gap: 8px; margin-top: 8px;
+  }
+  .macro-pill {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    background: var(--gray-100);
+    color: var(--gray-600);
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap { display: flex; flex-direction: column; gap: 16px; }
+  .progress-item {}
+  .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .progress-name { font-size: 13px; font-weight: 600; color: var(--onyx); }
+  .progress-val { font-family: var(--font-mono); font-size: 12px; color: var(--gray-400); }
+  .progress-bar-bg {
+    height: 6px;
+    background: var(--gray-100);
+    border-radius: var(--r-pill);
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: var(--r-pill);
+    transition: width 0.6s ease;
+  }
+
+  /* ── AVATAR ── */
+  .avatar-row { display: flex; gap: 16px; align-items: flex-end; }
+  .avatar {
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    overflow: hidden;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: var(--gray-600);
+  }
+  .avatar-lg { width: 64px; height: 64px; font-size: 24px; }
+  .avatar-md { width: 48px; height: 48px; font-size: 18px; }
+  .avatar-sm { width: 36px; height: 36px; font-size: 14px; }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    background: var(--onyx);
+    border-radius: var(--r-xl);
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    border-radius: var(--r-lg);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-item.active { background: rgba(200,255,71,0.12); }
+  .nav-icon { font-size: 20px; line-height: 1; }
+  .nav-label { font-size: 9px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--gray-400); font-family: var(--font-mono); }
+  .nav-item.active .nav-label { color: var(--acid); }
+  .nav-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--acid); margin: 0 auto; }
+
+  /* ── TOGGLE / CHIP ── */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 8px 16px;
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 500;
+    border: 1.5px solid var(--gray-200);
+    background: white;
+    cursor: pointer;
+    transition: all 0.18s;
+    color: var(--onyx);
+    font-family: var(--font-body);
+  }
+  .chip.selected { background: var(--onyx); color: var(--acid); border-color: var(--onyx); }
+  .chip:hover:not(.selected) { border-color: var(--onyx); }
+
+  /* ── SHADOW DEMO ── */
+  .shadow-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+  .shadow-box {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: var(--r-lg);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .shadow-name { font-family: var(--font-mono); font-size: 10px; color: var(--gray-600); }
+
+  /* ── WORKOUT CARD ── */
+  .workout-card {
+    background: var(--onyx);
+    border-radius: var(--r-xl);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+  .workout-tag { 
+    display: inline-flex; align-items: center;
+    background: rgba(200,255,71,0.15);
+    color: var(--acid);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    margin-bottom: 12px;
+  }
+  .workout-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .workout-sub { font-size: 13px; color: var(--gray-400); margin-bottom: 20px; }
+  .workout-stats { display: flex; gap: 20px; }
+  .wstat { display: flex; flex-direction: column; gap: 2px; }
+  .wstat-val { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+  .wstat-label { font-size: 10px; color: var(--gray-400); letter-spacing: 1px; text-transform: uppercase; font-family: var(--font-mono); }
+  .workout-ring {
+    position: absolute;
+    right: -30px; bottom: -30px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 20px solid rgba(200,255,71,0.08);
+  }
+  .workout-ring::after {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px;
+    right: 20px; bottom: 20px;
+    border-radius: 50%;
+    border: 14px solid rgba(200,255,71,0.05);
+  }
+
+  /* ── AI SUGGESTION ── */
+  .ai-card {
+    background: linear-gradient(135deg, var(--cream-2) 0%, #EAF5D0 100%);
+    border: 1px solid rgba(200,255,71,0.4);
+    border-radius: var(--r-xl);
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .ai-icon {
+    width: 40px; height: 40px;
+    background: var(--onyx);
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .ai-text {}
+  .ai-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--acid-dark); margin-bottom: 4px; }
+  .ai-content { font-size: 14px; line-height: 1.5; color: var(--onyx); }
+
+  /* ── ICONS (SVG) ── */
+  .icon-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .icon-item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 16px;
+    background: white;
+    border-radius: var(--r-md);
+    border: 1px solid var(--gray-100);
+    min-width: 72px;
+  }
+  .icon-item svg { width: 24px; height: 24px; }
+  .icon-name { font-family: var(--font-mono); font-size: 9px; color: var(--gray-400); text-align: center; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+  .tag-line {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gray-600);
+    margin-bottom: 40px;
+    border-left: 3px solid var(--acid);
+    padding-left: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="ds-page">
+
+  <!-- HEADER -->
+  <div class="ds-header">
+    <div>
+      <div class="ds-logo">VIT<span>Á</span>L</div>
+      <div class="tag-line">Coach IA · Nutrition · Performance</div>
+    </div>
+    <div class="ds-meta">
+      <strong>Design System v1.0</strong>
+      Application Mobile · iOS & Android<br>
+      Cible · Gen Z, 25–35 ans<br>
+      Avril 2026
+    </div>
+  </div>
+
+  <!-- ─────────────── COULEURS ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">01 — Couleurs</div>
+    <div class="ds-section-title">Palette principale</div>
+
+    <div style="margin-bottom: 32px;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">PRIMAIRES</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#F5F0E8;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Cream</span>
+            <span class="swatch-hex">#F5F0E8</span>
+            <span class="swatch-var">--cream</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#EDE7D9;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Cream 2</span>
+            <span class="swatch-hex">#EDE7D9</span>
+            <span class="swatch-var">--cream-2</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#C8FF47; position:relative;">
+            <div style="position:absolute;bottom:8px;right:8px;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,0.2);"></div>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Acid</span>
+            <span class="swatch-hex">#C8FF47</span>
+            <span class="swatch-var">--acid ★ Primaire</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#9ED626;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Acid Dark</span>
+            <span class="swatch-hex">#9ED626</span>
+            <span class="swatch-var">--acid-dark</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#141414;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Onyx</span>
+            <span class="swatch-hex">#141414</span>
+            <span class="swatch-var">--onyx</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1E1E1E;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Onyx 2</span>
+            <span class="swatch-hex">#1E1E1E</span>
+            <span class="swatch-var">--onyx-2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 32px;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">NEUTRES</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#F0EBE2;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gray 100</span><span class="swatch-hex">#F0EBE2</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#DDD6C8;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gray 200</span><span class="swatch-hex">#DDD6C8</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#9A9188;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gray 400</span><span class="swatch-hex">#9A9188</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#5C564E;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gray 600</span><span class="swatch-hex">#5C564E</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#2A2520;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gray 800</span><span class="swatch-hex">#2A2520</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">ACCENTS SECONDAIRES</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FF6B4A;"></div>
+          <div class="swatch-info"><span class="swatch-name">Coral</span><span class="swatch-hex">#FF6B4A</span><span class="swatch-var">Effort · Alerte</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#6BE8FF;"></div>
+          <div class="swatch-info"><span class="swatch-name">Sky</span><span class="swatch-hex">#6BE8FF</span><span class="swatch-var">Hydratation · Récup</span></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#4AFFB4;"></div>
+          <div class="swatch-info"><span class="swatch-name">Mint</span><span class="swatch-hex">#4AFFB4</span><span class="swatch-var">Succès · Objectif</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── TYPOGRAPHIE ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">02 — Typographie</div>
+    <div class="ds-section-title">Système typographique</div>
+
+    <div style="background: white; border-radius: var(--r-xl); padding: 32px; border: 1px solid var(--gray-100); margin-bottom: 24px;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); letter-spacing: 2px; margin-bottom: 24px;">CORMORANT GARAMOND — Display / Titres</div>
+      <div style="font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -2px; line-height: 0.95; color: var(--onyx);">Votre corps.<br><em style="color: var(--acid-dark);">Votre data.</em></div>
+      <div style="margin-top: 20px; font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--gray-600);">Performance & bien-être au quotidien</div>
+    </div>
+
+    <div class="typo-grid">
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Display XL</strong>
+          Cormorant 700<br>64px / −2px<br>Leading 0.95
+        </div>
+        <div style="font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -2px; line-height: 0.95;">Titre Hero</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Display L</strong>
+          Cormorant 600<br>40px / −1px<br>Leading 1.1
+        </div>
+        <div style="font-family: var(--font-display); font-size: 40px; font-weight: 600; letter-spacing: -1px; line-height: 1.1;">Section Heading</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Heading 1</strong>
+          Cormorant 600<br>28px / −0.5px<br>Leading 1.2
+        </div>
+        <div style="font-family: var(--font-display); font-size: 28px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.2;">Votre plan nutrition</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Heading 2</strong>
+          DM Sans 600<br>20px / 0px<br>Leading 1.3
+        </div>
+        <div style="font-family: var(--font-body); font-size: 20px; font-weight: 600;">Déjeuner · Lundi</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Body L</strong>
+          DM Sans 400<br>16px / 0px<br>Leading 1.6
+        </div>
+        <div style="font-family: var(--font-body); font-size: 16px;">Ton coach IA analyse tes repas et adapte tes entraînements en temps réel.</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Body M</strong>
+          DM Sans 400<br>14px<br>Leading 1.6
+        </div>
+        <div style="font-family: var(--font-body); font-size: 14px;">Protéines · Glucides · Lipides · Fibres</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Caption / Label</strong>
+          Space Grotesk 600<br>11px / +2px<br>Uppercase
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-400);">CALORIES AUJOURD'HUI</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">
+          <strong>Metric / Data</strong>
+          Space Grotesk 700<br>48px / −2px
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 48px; font-weight: 700; letter-spacing: -2px;">2,148 <span style="font-size: 20px; color: var(--gray-400); font-weight: 400;">kcal</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── SPACING ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">03 — Espacement & Grille</div>
+    <div class="ds-section-title">Système de spacing</div>
+
+    <div class="two-col">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">TOKENS SPACING</div>
+        <div class="spacing-grid">
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-xs</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 4px;"></div>
+              <div class="spacing-val">4px</div>
+            </div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-sm</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 8px;"></div>
+              <div class="spacing-val">8px</div>
+            </div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-md</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 16px;"></div>
+              <div class="spacing-val">16px</div>
+            </div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-lg</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 24px;"></div>
+              <div class="spacing-val">24px</div>
+            </div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-xl</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 40px;"></div>
+              <div class="spacing-val">40px</div>
+            </div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-label">--sp-2xl</div>
+            <div class="spacing-bar-wrap">
+              <div class="spacing-bar" style="width: 64px;"></div>
+              <div class="spacing-val">64px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">BORDER RADIUS</div>
+        <div class="radius-grid">
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius: 8px;"></div>
+            <div class="radius-label">--r-sm<br>8px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius: 16px;"></div>
+            <div class="radius-label">--r-md<br>16px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius: 24px;"></div>
+            <div class="radius-label">--r-lg<br>24px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius: 32px;"></div>
+            <div class="radius-label">--r-xl<br>32px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius: 999px;"></div>
+            <div class="radius-label">--r-pill<br>999px</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); margin-bottom: 16px; letter-spacing: 1px;">OMBRES</div>
+          <div class="shadow-grid">
+            <div class="shadow-box" style="box-shadow: 0 2px 8px rgba(20,20,20,0.06);">
+              <div class="shadow-name">sm</div>
+            </div>
+            <div class="shadow-box" style="box-shadow: 0 8px 32px rgba(20,20,20,0.10);">
+              <div class="shadow-name">md</div>
+            </div>
+            <div class="shadow-box" style="box-shadow: 0 24px 64px rgba(20,20,20,0.14);">
+              <div class="shadow-name">lg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── COMPOSANTS ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">04 — Composants</div>
+    <div class="ds-section-title">Bibliothèque UI</div>
+
+    <div class="comp-grid">
+
+      <!-- BOUTONS -->
+      <div class="comp-card">
+        <div class="comp-card-title">Boutons</div>
+        <div class="comp-preview">
+          <button class="btn btn-primary">Commencer</button>
+          <button class="btn btn-acid">Analyser mon repas</button>
+          <button class="btn btn-outline">Voir le plan</button>
+          <button class="btn btn-ghost">Passer</button>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-sm">Petit</button>
+            <button class="btn btn-acid btn-sm">+ Ajouter</button>
+          </div>
+          <button class="btn btn-primary btn-lg" style="width: 100%;">Démarrer l'entraînement</button>
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="comp-card">
+        <div class="comp-card-title">Badges & Tags</div>
+        <div class="comp-preview">
+          <div class="comp-preview row">
+            <span class="badge badge-acid">✓ Objectif atteint</span>
+            <span class="badge badge-onyx">IA Coach</span>
+          </div>
+          <div class="comp-preview row">
+            <span class="badge badge-coral">Effort intense</span>
+            <span class="badge badge-sky">Hydratation</span>
+            <span class="badge badge-mint">Récupération</span>
+          </div>
+          <div class="comp-preview row">
+            <span class="badge badge-neutral">Cardio</span>
+            <span class="badge badge-neutral">Force</span>
+            <span class="badge badge-neutral">Mobilité</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUTS -->
+      <div class="comp-card">
+        <div class="comp-card-title">Champs de saisie</div>
+        <div class="comp-preview">
+          <div class="input-wrap">
+            <label class="input-label">Ton prénom</label>
+            <input class="input-field" placeholder="Alex" value="">
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Poids (kg)</label>
+            <input class="input-field focused" placeholder="72" value="72">
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Email</label>
+            <input class="input-field" placeholder="alex@vitál.app" type="email">
+          </div>
+        </div>
+      </div>
+
+      <!-- CHIPS -->
+      <div class="comp-card">
+        <div class="comp-card-title">Sélection / Chips</div>
+        <div class="comp-preview">
+          <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 4px;">Objectifs fitness</div>
+          <div class="chip-row">
+            <div class="chip selected">Perte de poids</div>
+            <div class="chip">Prise de masse</div>
+            <div class="chip">Endurance</div>
+          </div>
+          <div style="font-size: 13px; color: var(--gray-600); margin: 4px 0;">Préférences alimentaires</div>
+          <div class="chip-row">
+            <div class="chip">Végétarien</div>
+            <div class="chip selected">Sans gluten</div>
+            <div class="chip">Vegan</div>
+            <div class="chip">Omnivore</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- METRIC CARD -->
+      <div class="comp-card">
+        <div class="comp-card-title">Carte Métrique</div>
+        <div class="comp-preview">
+          <div class="metric-card">
+            <div class="metric-label">Calories aujourd'hui</div>
+            <div class="metric-value">1,840 <span>/ 2,200 kcal</span></div>
+            <div class="metric-change">↑ +12% vs hier</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS BARS -->
+      <div class="comp-card">
+        <div class="comp-card-title">Progression macros</div>
+        <div class="comp-preview">
+          <div class="progress-wrap">
+            <div class="progress-item">
+              <div class="progress-header">
+                <span class="progress-name">Protéines</span>
+                <span class="progress-val">118g / 160g</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 73%; background: var(--acid);"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-header">
+                <span class="progress-name">Glucides</span>
+                <span class="progress-val">220g / 280g</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 78%; background: var(--sky);"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-header">
+                <span class="progress-name">Lipides</span>
+                <span class="progress-val">48g / 80g</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 60%; background: var(--coral);"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-header">
+                <span class="progress-name">Fibres</span>
+                <span class="progress-val">28g / 35g</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 80%; background: var(--mint);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEAL CARD -->
+      <div class="comp-card">
+        <div class="comp-card-title">Carte Repas</div>
+        <div class="comp-preview">
+          <div class="meal-card">
+            <div class="meal-img">🥗</div>
+            <div class="meal-info">
+              <div class="meal-name">Bol de quinoa &amp; avocat</div>
+              <div class="meal-cal">485 kcal · 12 min prep</div>
+              <div class="meal-macro">
+                <span class="macro-pill">P 22g</span>
+                <span class="macro-pill">G 58g</span>
+                <span class="macro-pill">L 18g</span>
+              </div>
+            </div>
+          </div>
+          <div class="meal-card">
+            <div class="meal-img">🍳</div>
+            <div class="meal-info">
+              <div class="meal-name">Oeufs brouillés & épinards</div>
+              <div class="meal-cal">320 kcal · 8 min prep</div>
+              <div class="meal-macro">
+                <span class="macro-pill">P 28g</span>
+                <span class="macro-pill">G 12g</span>
+                <span class="macro-pill">L 20g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKOUT CARD -->
+      <div class="comp-card">
+        <div class="comp-card-title">Carte Entraînement</div>
+        <div class="comp-preview">
+          <div class="workout-card">
+            <div class="workout-ring"></div>
+            <div class="workout-tag">Force · Niveau 2</div>
+            <div class="workout-title">Upper Body<br>Circuit</div>
+            <div class="workout-sub">4 exercices · 35 min</div>
+            <div class="workout-stats">
+              <div class="wstat">
+                <div class="wstat-val">35</div>
+                <div class="wstat-label">Minutes</div>
+              </div>
+              <div class="wstat">
+                <div class="wstat-val">280</div>
+                <div class="wstat-label">Kcal</div>
+              </div>
+              <div class="wstat">
+                <div class="wstat-val">4</div>
+                <div class="wstat-label">Exercices</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI SUGGESTION -->
+      <div class="comp-card">
+        <div class="comp-card-title">Suggestion IA</div>
+        <div class="comp-preview">
+          <div class="ai-card">
+            <div class="ai-icon">◆</div>
+            <div class="ai-text">
+              <div class="ai-label">Coach IA</div>
+              <div class="ai-content">Tu es à 340 kcal de ton objectif. Une collation riche en protéines serait idéale avant ta séance de ce soir.</div>
+            </div>
+          </div>
+          <div class="ai-card" style="background: linear-gradient(135deg, #E8EEF5 0%, #D6E8FF 100%); border-color: rgba(107,232,255,0.4);">
+            <div class="ai-icon" style="background: var(--onyx);">◈</div>
+            <div class="ai-text">
+              <div class="ai-label" style="color: #0099BB;">Analyse repas</div>
+              <div class="ai-content">Ce repas couvre 68% de tes besoins en protéines journaliers. Excellent choix post-entraînement !</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM NAV -->
+      <div class="comp-card" style="grid-column: span 2;">
+        <div class="comp-card-title">Navigation principale (Bottom Bar)</div>
+        <div class="comp-preview">
+          <div class="bottom-nav">
+            <div class="nav-item active">
+              <div class="nav-icon">⌂</div>
+              <div class="nav-label">Accueil</div>
+              <div class="nav-dot"></div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">◎</div>
+              <div class="nav-label">Nutrition</div>
+            </div>
+            <div class="nav-item">
+              <div style="width: 52px; height: 52px; background: var(--acid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-top: -10px; box-shadow: 0 4px 16px rgba(200,255,71,0.4);">+</div>
+              <div class="nav-label" style="color: var(--acid);">Scanner</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">◈</div>
+              <div class="nav-label">Sport</div>
+            </div>
+            <div class="nav-item">
+              <div class="nav-icon">◉</div>
+              <div class="nav-label">Profil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AVATARS -->
+      <div class="comp-card">
+        <div class="comp-card-title">Avatars</div>
+        <div class="comp-preview row" style="align-items: flex-end;">
+          <div class="avatar avatar-lg" style="background: var(--acid); color: var(--onyx);">AL</div>
+          <div class="avatar avatar-md" style="background: var(--gray-200);">MR</div>
+          <div class="avatar avatar-sm" style="background: var(--onyx); color: var(--acid);">+4</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─────────────── ICONOGRAPHIE ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">05 — Iconographie</div>
+    <div class="ds-section-title">Icônes système (SVG, stroke 1.5px)</div>
+
+    <div class="icon-grid">
+      <!-- Home -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <div class="icon-name">home</div>
+      </div>
+      <!-- Camera -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <div class="icon-name">camera</div>
+      </div>
+      <!-- Chart -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <div class="icon-name">stats</div>
+      </div>
+      <!-- Bolt (workout) -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+        <div class="icon-name">workout</div>
+      </div>
+      <!-- Apple (nutrition) -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 013 3c0 1.5-1 2.5-1.5 3H10.5C10 8 9 7 9 5.5A3 3 0 0112 2z"/>
+          <path d="M5.5 10c-1.5 0-3 1.5-3 4.5C2.5 18 5 22 8 22c1 0 2-.5 3-1 1 .5 2 1 3 1 3 0 5.5-4 5.5-7.5 0-3-1.5-4.5-3-4.5H5.5z"/>
+        </svg>
+        <div class="icon-name">nutrition</div>
+      </div>
+      <!-- User -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <div class="icon-name">profil</div>
+      </div>
+      <!-- Heart -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+        <div class="icon-name">santé</div>
+      </div>
+      <!-- Clock -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <div class="icon-name">durée</div>
+      </div>
+      <!-- Fire -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 14.5A2.5 2.5 0 0011 17c1.38 0 2.5-1.12 2.5-2.5 0-1.5-1-2.5-2-4 0 0 0 1-1 2-1-1.5-1.5-3-1.5-4 0-3 2-5 5-6-1 3 0 5 2 6.5a7.5 7.5 0 01.5 11c-3 2-7 1.5-9-1.5"/>
+        </svg>
+        <div class="icon-name">calories</div>
+      </div>
+      <!-- Plus -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        <div class="icon-name">ajouter</div>
+      </div>
+      <!-- Settings -->
+      <div class="icon-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+        <div class="icon-name">réglages</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── MOTION ─────────────── -->
+  <div class="ds-section">
+    <div class="ds-section-label">06 — Motion & Animation</div>
+    <div class="ds-section-title">Principes d'animation</div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-card-title">Durées</div>
+        <div class="comp-preview">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md); font-family: var(--font-mono); font-size: 12px;"><span>Micro (hover, tap)</span><strong>120ms</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md); font-family: var(--font-mono); font-size: 12px;"><span>Standard (transitions)</span><strong>240ms</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md); font-family: var(--font-mono); font-size: 12px;"><span>Entrée de page</span><strong>380ms</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md); font-family: var(--font-mono); font-size: 12px;"><span>Hero / Celebration</span><strong>600ms</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-card-title">Courbes d'easing</div>
+        <div class="comp-preview">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md);">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; margin-bottom: 2px;">ease-out-expo</div>
+              <div style="font-size: 12px; color: var(--gray-600);">Entrées d'éléments, slide-up</div>
+            </div>
+            <div style="padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md);">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; margin-bottom: 2px;">spring (mass 1, stiff 200)</div>
+              <div style="font-size: 12px; color: var(--gray-600);">Boutons, cartes interactives</div>
+            </div>
+            <div style="padding: 10px 14px; background: var(--gray-100); border-radius: var(--r-md);">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; margin-bottom: 2px;">ease-in-out</div>
+              <div style="font-size: 12px; color: var(--gray-600);">Progress bars, transitions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top: 1.5px solid var(--gray-200); padding-top: 32px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-family: var(--font-display); font-size: 28px; font-weight: 600;">VIT<span style="color: var(--acid-dark);">Á</span>L</div>
+    <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-400); text-align: right; line-height: 1.8;">
+      Design System v1.0 · Avril 2026<br>
+      Application mobile · iOS 17+ · Android 14+<br>
+      Cible Gen Z · 25–35 ans
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

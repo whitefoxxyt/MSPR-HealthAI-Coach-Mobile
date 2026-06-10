@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VITÁL — Wireframes · 24 écrans</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #F2EEE8;
+  font-family: 'DM Sans', sans-serif;
+  color: #1A1A1A;
+}
+.page-header {
+  padding: 48px 60px 32px;
+  border-bottom: 1.5px solid #DDD6C8;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  background: #F2EEE8;
+  position: sticky; top: 0; z-index: 100;
+}
+.page-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #9A9188; }
+.page-app { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #1A1A1A; margin-top: 4px; }
+.page-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: #9A9188; text-align: right; line-height: 2; }
+
+.flow-section {
+  padding: 48px 60px;
+  border-bottom: 1px solid #DDD6C8;
+}
+.flow-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: #9A9188;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.flow-label::after { content: ''; flex: 1; height: 1px; background: #DDD6C8; }
+.flow-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 32px; }
+
+.screens-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* PHONE FRAME */
+.phone {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+.phone-frame {
+  width: 200px;
+  height: 400px;
+  border-radius: 28px;
+  border: 2px solid #2A2520;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+}
+.phone-notch {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 12px;
+  background: #2A2520;
+  border-radius: 8px;
+  z-index: 10;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  padding: 28px 12px 12px;
+  display: flex; flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+.phone-label {
+  margin-top: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: #5C564E;
+  text-align: center;
+}
+.screen-num {
+  position: absolute; top: 0; left: 0;
+  background: #141414;
+  color: #C8FF47;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; font-weight: 700;
+  padding: 4px 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* WIREFRAME ELEMENTS */
+.wf-bar { height: 4px; background: #2A2520; border-radius: 2px; margin-bottom: 6px; }
+.wf-rect { background: #E8E2D9; border-radius: 6px; }
+.wf-rect.dark { background: #2A2520; }
+.wf-rect.accent { background: #C8FF47; }
+.wf-rect.mid { background: #D0C9BE; }
+.wf-circle { border-radius: 50%; background: #E8E2D9; }
+.wf-circle.dark { background: #2A2520; }
+.wf-circle.accent { background: #C8FF47; }
+.wf-text { height: 8px; background: #DDD6C8; border-radius: 2px; margin-bottom: 5px; }
+.wf-text.sm { height: 6px; background: #E8E2D9; }
+.wf-text.lg { height: 12px; background: #2A2520; border-radius: 3px; }
+.wf-text.xl { height: 18px; background: #2A2520; border-radius: 3px; }
+.wf-text.accent { background: #9ED626; }
+.wf-img { background: #E0D9CE; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.wf-img::after { content: '⊞'; font-size: 18px; color: #B0A99E; }
+.wf-btn { height: 36px; border-radius: 20px; background: #2A2520; margin-top: 4px; }
+.wf-btn.outline { background: transparent; border: 2px solid #2A2520; }
+.wf-btn.accent { background: #C8FF47; }
+.wf-btn.sm { height: 28px; border-radius: 16px; }
+.wf-input { height: 32px; border-radius: 8px; background: #F0EBE2; border: 1.5px solid #DDD6C8; margin-bottom: 8px; }
+.wf-nav { height: 44px; background: #2A2520; border-radius: 16px; margin-top: auto; display: flex; align-items: center; justify-content: space-around; padding: 0 8px; flex-shrink: 0; }
+.wf-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #5C564E; }
+.wf-nav-dot.active { background: #C8FF47; }
+.wf-nav-center { width: 28px; height: 28px; border-radius: 50%; background: #C8FF47; }
+.wf-row { display: flex; gap: 6px; margin-bottom: 6px; }
+.wf-pill { height: 18px; border-radius: 10px; background: #E8E2D9; }
+.wf-pill.accent { background: #C8FF47; width: 50px; }
+.wf-pill.dark { background: #2A2520; width: 60px; }
+.wf-card { background: #F7F3EE; border-radius: 12px; padding: 8px; margin-bottom: 6px; border: 1px solid #E0D9CE; }
+.wf-card.dark { background: #2A2520; }
+.wf-chip { height: 22px; border-radius: 12px; border: 1.5px solid #DDD6C8; background: white; display: inline-block; }
+.wf-chip.sel { background: #2A2520; border-color: #2A2520; }
+.wf-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
+.wf-progress { height: 5px; background: #E8E2D9; border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+.wf-progress-fill { height: 100%; background: #C8FF47; border-radius: 3px; }
+.wf-step { display: flex; gap: 3px; justify-content: center; margin-bottom: 8px; }
+.wf-step-dot { width: 6px; height: 6px; border-radius: 50%; background: #DDD6C8; }
+.wf-step-dot.active { background: #2A2520; width: 16px; border-radius: 3px; }
+
+.arrow-connector {
+  width: 24px; height: 400px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-size: 16px; color: #9A9188; margin-top: 40px;
+}
+
+.flow-note {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(200,255,71,0.15);
+  border-radius: 8px;
+  border-left: 3px solid #9ED626;
+  font-size: 12px;
+  color: #5C564E;
+  font-family: 'Space Grotesk', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Wireframes · Basse fidélité</div>
+    <div class="page-app">VITÁL — 24 écrans</div>
+  </div>
+  <div class="page-meta">
+    Application mobile · iOS & Android<br>
+    Gen Z · 25–35 ans · Coach IA Nutrition + Sport<br>
+    Avril 2026
+  </div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 1: ONBOARDING -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 01 — Onboarding</div>
+  <div class="flow-title">Première ouverture & configuration du profil</div>
+  <div class="screens-row">
+
+    <!-- S1: Splash -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#141414;">
+        <div class="phone-notch"></div>
+        <div class="screen-num">01</div>
+        <div class="phone-screen" style="align-items:center; justify-content:center; gap:16px;">
+          <div style="width:64px;height:64px;" class="wf-circle accent"></div>
+          <div class="wf-text xl" style="width:80px;background:#C8FF47;"></div>
+          <div class="wf-text sm" style="width:120px;background:#5C564E;"></div>
+          <div style="margin-top:40px;width:100%;"></div>
+          <div class="wf-btn" style="width:100%;background:#C8FF47;"></div>
+          <div class="wf-btn outline" style="width:100%;border-color:#5C564E;"></div>
+        </div>
+      </div>
+      <div class="phone-label">Splash / Welcome</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S2: Objectif -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">02</div>
+        <div class="phone-screen">
+          <div class="wf-step"><div class="wf-step-dot active"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div></div>
+          <div class="wf-text xl" style="width:90%;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:75%;"></div>
+          <div style="height:8px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+            <div class="wf-circle" style="width:32px;height:32px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:60%;"></div></div>
+            <div class="wf-circle" style="width:16px;height:16px;background:#DDD6C8;"></div>
+          </div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;border:1.5px solid #2A2520;">
+            <div class="wf-circle dark" style="width:32px;height:32px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:60%;"></div></div>
+            <div class="wf-circle accent" style="width:16px;height:16px;"></div>
+          </div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+            <div class="wf-circle" style="width:32px;height:32px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:60%;"></div></div>
+            <div class="wf-circle" style="width:16px;height:16px;background:#DDD6C8;"></div>
+          </div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+            <div class="wf-circle" style="width:32px;height:32px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:60%;"></div></div>
+            <div class="wf-circle" style="width:16px;height:16px;background:#DDD6C8;"></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent"></div>
+        </div>
+      </div>
+      <div class="phone-label">Objectif</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S3: Profil physique -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">03</div>
+        <div class="phone-screen">
+          <div class="wf-step"><div class="wf-step-dot"></div><div class="wf-step-dot active"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div></div>
+          <div class="wf-text xl" style="width:85%;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:65%;"></div>
+          <div style="height:10px;"></div>
+          <div class="wf-text sm" style="width:30%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div class="wf-text sm" style="width:30%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div class="wf-text sm" style="width:30%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div style="display:flex;gap:6px;margin-bottom:8px;">
+            <div class="wf-chip sel" style="flex:1;height:32px;border-radius:10px;"></div>
+            <div class="wf-chip" style="flex:1;height:32px;border-radius:10px;"></div>
+            <div class="wf-chip" style="flex:1;height:32px;border-radius:10px;"></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent"></div>
+        </div>
+      </div>
+      <div class="phone-label">Profil physique</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S4: Niveau activité -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">04</div>
+        <div class="phone-screen">
+          <div class="wf-step"><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot active"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div></div>
+          <div class="wf-text xl" style="width:90%;margin-bottom:4px;"></div>
+          <div style="height:8px;"></div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+              <div class="wf-rect" style="width:36px;height:36px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:60%;"></div><div class="wf-text sm" style="width:90%;"></div></div>
+            </div>
+            <div class="wf-card" style="border:1.5px solid #2A2520;display:flex;align-items:center;gap:8px;">
+              <div class="wf-rect dark" style="width:36px;height:36px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text dark" style="width:60%;height:8px;background:#2A2520;border-radius:2px;margin-bottom:4px;"></div><div class="wf-text sm" style="width:90%;"></div></div>
+            </div>
+            <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+              <div class="wf-rect" style="width:36px;height:36px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:60%;"></div><div class="wf-text sm" style="width:90%;"></div></div>
+            </div>
+            <div class="wf-card" style="display:flex;align-items:center;gap:8px;">
+              <div class="wf-rect" style="width:36px;height:36px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:60%;"></div><div class="wf-text sm" style="width:90%;"></div></div>
+            </div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent"></div>
+        </div>
+      </div>
+      <div class="phone-label">Niveau d'activité</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S5: Préférences alimentaires -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">05</div>
+        <div class="phone-screen">
+          <div class="wf-step"><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot"></div><div class="wf-step-dot active"></div><div class="wf-step-dot"></div></div>
+          <div class="wf-text xl" style="width:90%;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:80%;"></div>
+          <div style="height:8px;"></div>
+          <div class="wf-chips">
+            <div class="wf-chip sel" style="width:58px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:48px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:40px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:52px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:44px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip sel" style="width:56px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:50px;height:26px;border-radius:14px;"></div>
+          </div>
+          <div style="height:6px;"></div>
+          <div class="wf-text sm" style="width:40%;background:#9A9188;margin-bottom:6px;"></div>
+          <div class="wf-chips">
+            <div class="wf-chip" style="width:44px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip sel" style="width:54px;height:26px;border-radius:14px;"></div>
+            <div class="wf-chip" style="width:48px;height:26px;border-radius:14px;"></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent"></div>
+        </div>
+      </div>
+      <div class="phone-label">Préférences alim.</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S6: Résumé IA -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#141414;">
+        <div class="phone-notch"></div>
+        <div class="screen-num">06</div>
+        <div class="phone-screen" style="align-items:center;">
+          <div style="width:48px;height:48px;border-radius:12px;background:#C8FF47;margin-bottom:8px;"></div>
+          <div class="wf-text xl" style="width:80%;background:#F5F0E8;"></div>
+          <div class="wf-text sm" style="width:90%;background:#5C564E;margin-bottom:12px;"></div>
+          <div style="background:#1E1E1E;border-radius:14px;padding:10px;width:100%;margin-bottom:6px;">
+            <div class="wf-text" style="width:40%;background:#9A9188;margin-bottom:5px;"></div>
+            <div class="wf-text lg" style="width:60%;background:#C8FF47;"></div>
+          </div>
+          <div style="background:#1E1E1E;border-radius:14px;padding:10px;width:100%;margin-bottom:6px;">
+            <div class="wf-text" style="width:40%;background:#9A9188;margin-bottom:5px;"></div>
+            <div class="wf-text lg" style="width:50%;background:#C8FF47;"></div>
+          </div>
+          <div style="background:#1E1E1E;border-radius:14px;padding:10px;width:100%;margin-bottom:6px;">
+            <div class="wf-text" style="width:35%;background:#9A9188;margin-bottom:5px;"></div>
+            <div class="wf-text lg" style="width:70%;background:#C8FF47;"></div>
+          </div>
+          <div style="margin-top:auto;width:100%;"></div>
+          <div class="wf-btn accent" style="width:100%;"></div>
+        </div>
+      </div>
+      <div class="phone-label">Résumé IA · Profil</div>
+    </div>
+
+  </div>
+  <div class="flow-note">→ L'IA génère le profil nutritionnel + plan sport initial à la fin de l'onboarding. Transition animée vers le Dashboard.</div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 2: AUTH -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 02 — Authentification</div>
+  <div class="flow-title">Connexion & Création de compte</div>
+  <div class="screens-row">
+
+    <!-- S7: Login -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">07</div>
+        <div class="phone-screen">
+          <div class="wf-text xl" style="width:70%;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:80%;margin-bottom:16px;"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+            <div class="wf-rect" style="height:44px;border-radius:10px;background:#F0EBE2;border:1.5px solid #DDD6C8;display:flex;align-items:center;padding:0 12px;gap:8px;"><div style="width:16px;height:16px;border-radius:50%;background:#DDD6C8;"></div><div class="wf-text sm" style="flex:1;margin:0;"></div></div>
+            <div class="wf-rect" style="height:44px;border-radius:10px;background:#F0EBE2;border:1.5px solid #2A2520;display:flex;align-items:center;padding:0 12px;gap:8px;"><div style="width:16px;height:16px;border-radius:50%;background:#DDD6C8;"></div><div class="wf-text sm" style="flex:1;margin:0;"></div></div>
+          </div>
+          <div class="wf-text sm" style="width:40%;background:#9A9188;text-align:right;margin-left:auto;"></div>
+          <div style="height:8px;"></div>
+          <div class="wf-btn" style="background:#141414;"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+            <div style="flex:1;height:1px;background:#DDD6C8;"></div>
+            <div class="wf-text sm" style="width:20px;margin:0;background:#9A9188;"></div>
+            <div style="flex:1;height:1px;background:#DDD6C8;"></div>
+          </div>
+          <div class="wf-btn outline"></div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-text sm" style="width:70%;margin:0 auto;background:#9A9188;"></div>
+        </div>
+      </div>
+      <div class="phone-label">Connexion</div>
+    </div>
+    <div class="arrow-connector">↔</div>
+
+    <!-- S8: Signup -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">08</div>
+        <div class="phone-screen">
+          <div class="wf-text xl" style="width:75%;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:85%;margin-bottom:12px;"></div>
+          <div class="wf-text sm" style="width:28%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div class="wf-text sm" style="width:28%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div class="wf-text sm" style="width:28%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div class="wf-text sm" style="width:28%;background:#9A9188;"></div>
+          <div class="wf-input"></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <div style="width:16px;height:16px;border-radius:4px;border:1.5px solid #DDD6C8;flex-shrink:0;"></div>
+            <div class="wf-text sm" style="width:90%;margin:0;"></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent"></div>
+        </div>
+      </div>
+      <div class="phone-label">Inscription</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 3: CORE APP -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 03 — App principale</div>
+  <div class="flow-title">Dashboard & Navigation centrale</div>
+  <div class="screens-row">
+
+    <!-- S9: Dashboard -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">09</div>
+        <div class="phone-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div><div class="wf-text sm" style="width:50px;background:#9A9188;margin-bottom:3px;"></div><div class="wf-text" style="width:70px;"></div></div>
+            <div class="wf-circle" style="width:32px;height:32px;background:#DDD6C8;"></div>
+          </div>
+          <!-- Big metric card -->
+          <div class="wf-card dark" style="padding:12px;border-radius:16px;margin-bottom:8px;">
+            <div class="wf-text sm" style="width:60%;background:#5C564E;"></div>
+            <div class="wf-text xl" style="width:75%;background:#C8FF47;margin:4px 0;"></div>
+            <div class="wf-progress" style="background:#2A2520;"><div class="wf-progress-fill" style="width:72%;"></div></div>
+          </div>
+          <!-- Row macros -->
+          <div style="display:flex;gap:6px;margin-bottom:8px;">
+            <div class="wf-card" style="flex:1;padding:8px;">
+              <div class="wf-text sm" style="width:90%;"></div>
+              <div class="wf-text" style="width:50%;background:#9ED626;"></div>
+            </div>
+            <div class="wf-card" style="flex:1;padding:8px;">
+              <div class="wf-text sm" style="width:90%;"></div>
+              <div class="wf-text" style="width:50%;background:#6BE8FF;"></div>
+            </div>
+            <div class="wf-card" style="flex:1;padding:8px;">
+              <div class="wf-text sm" style="width:90%;"></div>
+              <div class="wf-text" style="width:50%;background:#FF6B4A;"></div>
+            </div>
+          </div>
+          <!-- AI suggestion -->
+          <div style="background:#EAF5D0;border-radius:12px;padding:8px;display:flex;gap:6px;margin-bottom:8px;border:1px solid rgba(200,255,71,0.5);">
+            <div class="wf-rect dark" style="width:24px;height:24px;border-radius:6px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:30%;background:#9ED626;margin-bottom:3px;"></div><div class="wf-text sm" style="width:100%;"></div></div>
+          </div>
+          <!-- Next workout -->
+          <div class="wf-card dark" style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px;">
+            <div class="wf-rect" style="width:36px;height:36px;border-radius:10px;background:#2A2520;border:1px solid #5C564E;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:60%;background:#F5F0E8;"></div><div class="wf-text sm" style="width:40%;background:#5C564E;"></div></div>
+            <div class="wf-btn accent sm" style="width:40px;padding:0;"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot active"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Dashboard · Accueil</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 4: NUTRITION -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 04 — Nutrition & Analyse IA</div>
+  <div class="flow-title">Scan repas · Journal · Plan nutritionnel</div>
+  <div class="screens-row">
+
+    <!-- S10: Scanner -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#0A0A0A;">
+        <div class="phone-notch" style="background:#333;"></div>
+        <div class="screen-num">10</div>
+        <div class="phone-screen" style="padding:28px 0 12px;">
+          <div style="position:relative;flex:1;margin:0 12px;">
+            <div class="wf-img" style="width:100%;height:100%;background:#1A1A1A;border-radius:16px;"></div>
+            <!-- Corner brackets -->
+            <div style="position:absolute;top:12px;left:12px;width:20px;height:20px;border-top:2px solid #C8FF47;border-left:2px solid #C8FF47;border-radius:4px 0 0 0;"></div>
+            <div style="position:absolute;top:12px;right:12px;width:20px;height:20px;border-top:2px solid #C8FF47;border-right:2px solid #C8FF47;border-radius:0 4px 0 0;"></div>
+            <div style="position:absolute;bottom:12px;left:12px;width:20px;height:20px;border-bottom:2px solid #C8FF47;border-left:2px solid #C8FF47;border-radius:0 0 0 4px;"></div>
+            <div style="position:absolute;bottom:12px;right:12px;width:20px;height:20px;border-bottom:2px solid #C8FF47;border-right:2px solid #C8FF47;border-radius:0 0 4px 0;"></div>
+          </div>
+          <div style="padding:0 12px;margin-top:10px;">
+            <div class="wf-text sm" style="width:70%;background:#5C564E;margin:0 auto 10px;"></div>
+            <div style="display:flex;justify-content:center;gap:16px;">
+              <div class="wf-circle" style="width:48px;height:48px;background:#2A2520;"></div>
+              <div class="wf-circle accent" style="width:56px;height:56px;margin-top:-4px;"></div>
+              <div class="wf-circle" style="width:48px;height:48px;background:#2A2520;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Scanner · Caméra</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S11: Résultats IA -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">11</div>
+        <div class="phone-screen">
+          <div class="wf-img" style="height:80px;width:100%;margin-bottom:8px;border-radius:12px;"></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <div class="wf-text xl" style="flex:1;"></div>
+            <div class="wf-pill accent" style="width:40px;height:16px;"></div>
+          </div>
+          <div class="wf-text sm" style="width:50%;background:#9A9188;margin-bottom:10px;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
+            <div class="wf-card" style="padding:8px;"><div class="wf-text sm" style="width:70%;"></div><div class="wf-text lg" style="width:50%;"></div></div>
+            <div class="wf-card" style="padding:8px;"><div class="wf-text sm" style="width:70%;"></div><div class="wf-text lg" style="width:50%;"></div></div>
+            <div class="wf-card" style="padding:8px;"><div class="wf-text sm" style="width:70%;"></div><div class="wf-text lg" style="width:50%;"></div></div>
+            <div class="wf-card" style="padding:8px;"><div class="wf-text sm" style="width:70%;"></div><div class="wf-text lg" style="width:50%;"></div></div>
+          </div>
+          <div style="background:#EAF5D0;border-radius:10px;padding:8px;margin-bottom:8px;border:1px solid rgba(200,255,71,0.4);">
+            <div class="wf-text" style="width:30%;background:#9ED626;margin-bottom:3px;"></div>
+            <div class="wf-text sm" style="width:100%;"></div>
+            <div class="wf-text sm" style="width:80%;"></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div style="display:flex;gap:6px;">
+            <div class="wf-btn outline" style="flex:1;"></div>
+            <div class="wf-btn accent" style="flex:2;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Résultats IA · Analyse</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S12: Journal alimentaire -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">12</div>
+        <div class="phone-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div class="wf-text xl" style="width:50%;"></div>
+            <div class="wf-rect accent" style="width:28px;height:28px;border-radius:8px;"></div>
+          </div>
+          <!-- Ring chart placeholder -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:64px;height:64px;border-radius:50%;border:6px solid #C8FF47;border-right-color:#E8E2D9;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div class="wf-text" style="width:80%;margin-bottom:3px;"></div>
+              <div class="wf-text xl" style="width:50%;"></div>
+              <div class="wf-text sm" style="width:60%;background:#9A9188;"></div>
+            </div>
+          </div>
+          <!-- Meals list -->
+          <div class="wf-text sm" style="width:25%;background:#9A9188;margin-bottom:5px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;margin-bottom:5px;">
+            <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:50%;"></div></div>
+            <div class="wf-text" style="width:30px;margin:0;"></div>
+          </div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;margin-bottom:5px;">
+            <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:75%;"></div><div class="wf-text sm" style="width:45%;"></div></div>
+            <div class="wf-text" style="width:30px;margin:0;"></div>
+          </div>
+          <div class="wf-text sm" style="width:30%;background:#9A9188;margin-bottom:5px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;">
+            <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:70%;"></div><div class="wf-text sm" style="width:55%;"></div></div>
+            <div class="wf-text" style="width:30px;margin:0;"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot active"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Journal alimentaire</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S13: Détail recette -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">13</div>
+        <div class="phone-screen" style="padding:0;">
+          <div class="wf-img" style="height:120px;border-radius:0;margin-bottom:0;width:100%;"></div>
+          <div style="padding:10px 12px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+              <div><div class="wf-text xl" style="width:120px;"></div><div class="wf-text sm" style="width:80px;background:#9A9188;"></div></div>
+              <div class="wf-circle" style="width:28px;height:28px;background:#F5F0E8;border:1px solid #DDD6C8;"></div>
+            </div>
+            <div style="display:flex;gap:5px;margin:6px 0;">
+              <div class="wf-pill" style="width:50px;height:18px;background:#EAF5D0;"></div>
+              <div class="wf-pill" style="width:40px;height:18px;"></div>
+              <div class="wf-pill" style="width:44px;height:18px;"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px;">
+              <div class="wf-card" style="padding:6px;text-align:center;"><div class="wf-text" style="width:80%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:60%;margin:0 auto;"></div></div>
+              <div class="wf-card" style="padding:6px;text-align:center;"><div class="wf-text" style="width:80%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:60%;margin:0 auto;"></div></div>
+              <div class="wf-card" style="padding:6px;text-align:center;"><div class="wf-text" style="width:80%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:60%;margin:0 auto;"></div></div>
+              <div class="wf-card" style="padding:6px;text-align:center;"><div class="wf-text" style="width:80%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:60%;margin:0 auto;"></div></div>
+            </div>
+            <div class="wf-text" style="width:50%;margin-bottom:5px;"></div>
+            <div class="wf-text sm" style="width:100%;"></div>
+            <div class="wf-text sm" style="width:90%;"></div>
+            <div class="wf-text sm" style="width:95%;"></div>
+          </div>
+          <div style="padding:0 12px;margin-top:auto;">
+            <div class="wf-btn accent"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Détail recette</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S14: Plan nutrition -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">14</div>
+        <div class="phone-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div class="wf-text xl" style="width:60%;"></div>
+            <div class="wf-pill" style="width:50px;height:20px;background:#C8FF47;"></div>
+          </div>
+          <!-- Days row -->
+          <div style="display:flex;gap:4px;margin-bottom:10px;">
+            <div style="flex:1;height:32px;border-radius:10px;background:#2A2520;display:flex;align-items:center;justify-content:center;"><div class="wf-text sm" style="width:14px;margin:0;background:#C8FF47;"></div></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+            <div style="flex:1;height:32px;border-radius:10px;background:#F0EBE2;"></div>
+          </div>
+          <!-- Meal sections -->
+          <div class="wf-text sm" style="width:25%;background:#9A9188;margin-bottom:4px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;margin-bottom:6px;">
+            <div class="wf-img" style="width:40px;height:40px;border-radius:10px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:80%;"></div><div class="wf-text sm" style="width:50%;"></div></div>
+            <div class="wf-text" style="width:25px;margin:0;background:#9A9188;"></div>
+          </div>
+          <div class="wf-text sm" style="width:25%;background:#9A9188;margin-bottom:4px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;margin-bottom:6px;">
+            <div class="wf-img" style="width:40px;height:40px;border-radius:10px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:70%;"></div><div class="wf-text sm" style="width:55%;"></div></div>
+            <div class="wf-text" style="width:25px;margin:0;background:#9A9188;"></div>
+          </div>
+          <div class="wf-text sm" style="width:25%;background:#9A9188;margin-bottom:4px;"></div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:6px;padding:8px;">
+            <div class="wf-img" style="width:40px;height:40px;border-radius:10px;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:75%;"></div><div class="wf-text sm" style="width:45%;"></div></div>
+            <div class="wf-text" style="width:25px;margin:0;background:#9A9188;"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot active"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Plan nutrition · Semaine</div>
+    </div>
+
+  </div>
+  <div class="flow-note">→ Le scan IA reconnaît automatiquement les aliments et calcule les macros. L'utilisateur peut corriger, puis l'ajout au journal est en un tap.</div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 5: SPORT -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 05 — Sport & Entraînement</div>
+  <div class="flow-title">Recommandations · Séance · En cours · Bilan</div>
+  <div class="screens-row">
+
+    <!-- S15: Recommandations sport -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">15</div>
+        <div class="phone-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div class="wf-text xl" style="width:55%;"></div>
+            <div style="display:flex;gap:4px;">
+              <div class="wf-chip" style="width:44px;height:22px;border-radius:12px;"></div>
+              <div class="wf-chip sel" style="width:44px;height:22px;border-radius:12px;"></div>
+            </div>
+          </div>
+          <!-- Featured card dark -->
+          <div class="wf-card dark" style="padding:12px;border-radius:16px;margin-bottom:8px;position:relative;overflow:hidden;">
+            <div class="wf-pill" style="width:60px;height:16px;background:rgba(200,255,71,0.2);margin-bottom:6px;"></div>
+            <div class="wf-text xl" style="width:80%;background:#F5F0E8;margin-bottom:3px;"></div>
+            <div class="wf-text sm" style="width:60%;background:#5C564E;margin-bottom:8px;"></div>
+            <div style="display:flex;gap:12px;">
+              <div><div class="wf-text xl" style="width:30px;background:#C8FF47;"></div><div class="wf-text sm" style="width:30px;background:#5C564E;"></div></div>
+              <div><div class="wf-text xl" style="width:30px;background:#C8FF47;"></div><div class="wf-text sm" style="width:30px;background:#5C564E;"></div></div>
+              <div><div class="wf-text xl" style="width:30px;background:#C8FF47;"></div><div class="wf-text sm" style="width:30px;background:#5C564E;"></div></div>
+            </div>
+          </div>
+          <!-- List cards -->
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px;">
+            <div class="wf-rect dark" style="width:40px;height:40px;border-radius:10px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:70%;"></div><div class="wf-text sm" style="width:50%;"></div></div>
+            <div class="wf-pill" style="width:36px;height:16px;background:#EAF5D0;"></div>
+          </div>
+          <div class="wf-card" style="display:flex;align-items:center;gap:8px;padding:8px;">
+            <div class="wf-rect dark" style="width:40px;height:40px;border-radius:10px;flex-shrink:0;"></div>
+            <div style="flex:1;"><div class="wf-text" style="width:65%;"></div><div class="wf-text sm" style="width:55%;"></div></div>
+            <div class="wf-pill" style="width:36px;height:16px;background:#EAF5D0;"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot active"></div>
+            <div class="wf-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Recommandations sport</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S16: Détail séance -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">16</div>
+        <div class="phone-screen" style="padding:0;">
+          <div style="background:#141414;padding:20px 12px 14px;position:relative;overflow:hidden;">
+            <div style="position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;border-radius:50%;border:10px solid rgba(200,255,71,0.1);"></div>
+            <div class="wf-text sm" style="width:60px;background:#5C564E;margin-bottom:4px;"></div>
+            <div class="wf-text xl" style="width:120px;background:#F5F0E8;margin-bottom:2px;"></div>
+            <div class="wf-text sm" style="width:80px;background:#5C564E;"></div>
+            <div style="display:flex;gap:12px;margin-top:8px;">
+              <div><div class="wf-text" style="width:28px;background:#C8FF47;"></div><div class="wf-text sm" style="width:28px;background:#5C564E;"></div></div>
+              <div><div class="wf-text" style="width:28px;background:#C8FF47;"></div><div class="wf-text sm" style="width:28px;background:#5C564E;"></div></div>
+              <div><div class="wf-text" style="width:28px;background:#C8FF47;"></div><div class="wf-text sm" style="width:28px;background:#5C564E;"></div></div>
+            </div>
+          </div>
+          <div style="padding:10px 12px;overflow:auto;">
+            <div class="wf-text" style="width:50%;margin-bottom:8px;"></div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div class="wf-card" style="display:flex;align-items:center;gap:8px;padding:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#C8FF47;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+                <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+                <div style="flex:1;"><div class="wf-text" style="width:75%;"></div><div class="wf-text sm" style="width:55%;"></div></div>
+              </div>
+              <div class="wf-card" style="display:flex;align-items:center;gap:8px;padding:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#E8E2D9;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+                <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+                <div style="flex:1;"><div class="wf-text" style="width:65%;"></div><div class="wf-text sm" style="width:60%;"></div></div>
+              </div>
+              <div class="wf-card" style="display:flex;align-items:center;gap:8px;padding:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#E8E2D9;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+                <div class="wf-img" style="width:36px;height:36px;border-radius:8px;"></div>
+                <div style="flex:1;"><div class="wf-text" style="width:70%;"></div><div class="wf-text sm" style="width:50%;"></div></div>
+              </div>
+            </div>
+            <div style="padding:0;margin-top:8px;">
+              <div class="wf-btn accent" style="margin:0;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Détail séance</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S17: Entraînement en cours -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#0A0A0A;">
+        <div class="phone-notch" style="background:#333;"></div>
+        <div class="screen-num">17</div>
+        <div class="phone-screen" style="align-items:center;justify-content:flex-start;padding:28px 12px 12px;">
+          <div style="display:flex;justify-content:space-between;width:100%;margin-bottom:10px;">
+            <div class="wf-text sm" style="width:40px;background:#5C564E;margin:0;"></div>
+            <div class="wf-text sm" style="width:50px;background:#C8FF47;margin:0;"></div>
+            <div class="wf-text sm" style="width:40px;background:#5C564E;margin:0;"></div>
+          </div>
+          <!-- Big timer -->
+          <div style="width:120px;height:120px;border-radius:50%;border:6px solid #C8FF47;border-right-color:#2A2520;border-bottom-color:#2A2520;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+            <div class="wf-text xl" style="width:60px;background:#F5F0E8;margin:0;"></div>
+          </div>
+          <!-- Exercise name -->
+          <div class="wf-text xl" style="width:90%;background:#F5F0E8;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:60%;background:#5C564E;margin-bottom:12px;"></div>
+          <!-- Sets -->
+          <div style="display:flex;gap:6px;margin-bottom:12px;">
+            <div class="wf-rect accent" style="width:32px;height:32px;border-radius:8px;"></div>
+            <div class="wf-rect" style="width:32px;height:32px;border-radius:8px;background:#2A2520;"></div>
+            <div class="wf-rect" style="width:32px;height:32px;border-radius:8px;background:#2A2520;"></div>
+            <div class="wf-rect" style="width:32px;height:32px;border-radius:8px;background:#2A2520;"></div>
+          </div>
+          <!-- Controls -->
+          <div style="display:flex;gap:10px;width:100%;margin-top:auto;">
+            <div class="wf-btn" style="flex:1;background:#2A2520;"></div>
+            <div class="wf-btn accent" style="flex:2;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Entraînement en cours</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S18: Fin de séance -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#141414;">
+        <div class="phone-notch" style="background:#333;"></div>
+        <div class="screen-num">18</div>
+        <div class="phone-screen" style="align-items:center;justify-content:center;padding:28px 12px 12px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:#C8FF47;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:10px;">✓</div>
+          <div class="wf-text xl" style="width:75%;background:#F5F0E8;text-align:center;margin-bottom:4px;"></div>
+          <div class="wf-text sm" style="width:60%;background:#5C564E;margin-bottom:16px;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin-bottom:12px;">
+            <div style="background:#1E1E1E;border-radius:12px;padding:10px;"><div class="wf-text sm" style="width:70%;background:#5C564E;"></div><div class="wf-text xl" style="width:55%;background:#C8FF47;"></div></div>
+            <div style="background:#1E1E1E;border-radius:12px;padding:10px;"><div class="wf-text sm" style="width:70%;background:#5C564E;"></div><div class="wf-text xl" style="width:55%;background:#C8FF47;"></div></div>
+            <div style="background:#1E1E1E;border-radius:12px;padding:10px;"><div class="wf-text sm" style="width:70%;background:#5C564E;"></div><div class="wf-text xl" style="width:55%;background:#C8FF47;"></div></div>
+            <div style="background:#1E1E1E;border-radius:12px;padding:10px;"><div class="wf-text sm" style="width:70%;background:#5C564E;"></div><div class="wf-text xl" style="width:55%;background:#C8FF47;"></div></div>
+          </div>
+          <!-- AI feedback -->
+          <div style="background:#1E1E1E;border-radius:12px;padding:10px;width:100%;margin-bottom:12px;border:1px solid rgba(200,255,71,0.2);">
+            <div class="wf-text" style="width:30%;background:#9ED626;margin-bottom:4px;"></div>
+            <div class="wf-text sm" style="width:100%;background:#5C564E;"></div>
+            <div class="wf-text sm" style="width:80%;background:#5C564E;"></div>
+          </div>
+          <div style="display:flex;gap:6px;width:100%;margin-top:auto;">
+            <div class="wf-btn outline" style="flex:1;border-color:#5C564E;"></div>
+            <div class="wf-btn accent" style="flex:2;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Bilan séance</div>
+    </div>
+
+  </div>
+  <div class="flow-note">→ Pendant l'entraînement, l'IA adapte les temps de repos selon la fréquence cardiaque (si wearable connecté). Le bilan est généré automatiquement.</div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 6: PROGRESSION -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 06 — Progression & Statistiques</div>
+  <div class="flow-title">Suivi global · Graphiques · Insights IA</div>
+  <div class="screens-row">
+
+    <!-- S19: Stats globales -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">19</div>
+        <div class="phone-screen">
+          <div class="wf-text xl" style="width:55%;margin-bottom:8px;"></div>
+          <!-- Period selector -->
+          <div style="display:flex;background:#F0EBE2;border-radius:12px;padding:3px;gap:2px;margin-bottom:10px;">
+            <div style="flex:1;height:26px;border-radius:9px;background:#2A2520;"></div>
+            <div style="flex:1;height:26px;"></div>
+            <div style="flex:1;height:26px;"></div>
+            <div style="flex:1;height:26px;"></div>
+          </div>
+          <!-- Chart area -->
+          <div class="wf-card" style="height:80px;padding:10px;display:flex;align-items:flex-end;gap:4px;">
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:40%;"></div>
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:60%;"></div>
+            <div style="flex:1;background:#C8FF47;border-radius:3px 3px 0 0;height:80%;"></div>
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:50%;"></div>
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:70%;"></div>
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:45%;"></div>
+            <div style="flex:1;background:#E8E2D9;border-radius:3px 3px 0 0;height:90%;"></div>
+          </div>
+          <!-- KPI row -->
+          <div style="display:flex;gap:6px;margin:8px 0;">
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text sm" style="width:80%;margin:0 auto 3px;"></div><div class="wf-text" style="width:50%;margin:0 auto;background:#9ED626;"></div></div>
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text sm" style="width:80%;margin:0 auto 3px;"></div><div class="wf-text" style="width:50%;margin:0 auto;"></div></div>
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text sm" style="width:80%;margin:0 auto 3px;"></div><div class="wf-text" style="width:50%;margin:0 auto;"></div></div>
+          </div>
+          <!-- Streaks -->
+          <div class="wf-text sm" style="width:30%;background:#9A9188;margin-bottom:5px;"></div>
+          <div style="display:flex;gap:4px;margin-bottom:6px;">
+            <div style="flex:1;height:28px;border-radius:8px;background:#C8FF47;opacity:0.9;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#C8FF47;opacity:0.7;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#C8FF47;opacity:0.5;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#E8E2D9;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#C8FF47;opacity:0.9;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#C8FF47;opacity:0.8;"></div>
+            <div style="flex:1;height:28px;border-radius:8px;background:#E8E2D9;"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Progression · Stats globales</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S20: Graphiques détaillés -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">20</div>
+        <div class="phone-screen">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div class="wf-rect" style="width:20px;height:20px;border-radius:6px;background:#DDD6C8;"></div>
+            <div class="wf-text xl" style="flex:1;"></div>
+          </div>
+          <!-- Metric tabs -->
+          <div style="display:flex;gap:5px;overflow:hidden;margin-bottom:8px;">
+            <div class="wf-chip sel" style="height:26px;width:56px;border-radius:13px;"></div>
+            <div class="wf-chip" style="height:26px;width:52px;border-radius:13px;"></div>
+            <div class="wf-chip" style="height:26px;width:48px;border-radius:13px;"></div>
+            <div class="wf-chip" style="height:26px;width:44px;border-radius:13px;"></div>
+          </div>
+          <!-- Big number -->
+          <div style="margin-bottom:6px;">
+            <div class="wf-text" style="width:35%;background:#9A9188;"></div>
+            <div style="font-family:'Space Grotesk';font-size:32px;font-weight:700;color:#2A2520;height:36px;display:flex;align-items:center;">
+              <div class="wf-text xl" style="width:50%;height:28px;"></div>
+            </div>
+          </div>
+          <!-- Line chart -->
+          <div style="height:80px;background:#F7F3EE;border-radius:12px;margin-bottom:8px;position:relative;overflow:hidden;">
+            <svg width="100%" height="100%" viewBox="0 0 176 80" preserveAspectRatio="none">
+              <path d="M0,60 C20,55 40,30 60,40 C80,50 100,20 120,25 C140,30 160,15 176,20" fill="none" stroke="#C8FF47" stroke-width="2.5"/>
+              <path d="M0,60 C20,55 40,30 60,40 C80,50 100,20 120,25 C140,30 160,15 176,20 L176,80 L0,80 Z" fill="rgba(200,255,71,0.1)"/>
+            </svg>
+          </div>
+          <!-- Detail metrics -->
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="wf-text sm" style="width:40%;margin:0;"></div>
+              <div class="wf-text sm" style="width:20%;margin:0;background:#9ED626;"></div>
+            </div>
+            <div class="wf-progress"><div class="wf-progress-fill" style="width:75%;"></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="wf-text sm" style="width:35%;margin:0;"></div>
+              <div class="wf-text sm" style="width:20%;margin:0;background:#9A9188;"></div>
+            </div>
+            <div class="wf-progress"><div class="wf-progress-fill" style="width:55%;background:#6BE8FF;"></div></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Graphiques détaillés</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 7: IA COACH & NOTIFICATIONS -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 07 — Coach IA & Notifications</div>
+  <div class="flow-title">Chat IA · Suggestions · Alertes intelligentes</div>
+  <div class="screens-row">
+
+    <!-- S21: IA Coach chat -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">21</div>
+        <div class="phone-screen">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div class="wf-rect dark" style="width:32px;height:32px;border-radius:9px;flex-shrink:0;"></div>
+            <div><div class="wf-text" style="width:60px;"></div><div class="wf-text sm" style="width:80px;background:#9A9188;"></div></div>
+          </div>
+          <!-- Messages -->
+          <div style="flex:1;display:flex;flex-direction:column;gap:7px;overflow:hidden;">
+            <div style="align-self:flex-start;max-width:80%;">
+              <div style="background:#F0EBE2;border-radius:14px 14px 14px 4px;padding:8px 10px;">
+                <div class="wf-text sm" style="width:100%;margin-bottom:3px;"></div>
+                <div class="wf-text sm" style="width:80%;"></div>
+              </div>
+            </div>
+            <div style="align-self:flex-end;max-width:80%;">
+              <div style="background:#141414;border-radius:14px 14px 4px 14px;padding:8px 10px;">
+                <div class="wf-text sm" style="width:100%;background:#DDD6C8;margin-bottom:3px;"></div>
+                <div class="wf-text sm" style="width:70%;background:#DDD6C8;"></div>
+              </div>
+            </div>
+            <div style="align-self:flex-start;max-width:90%;">
+              <div style="background:#EAF5D0;border-radius:14px 14px 14px 4px;padding:8px 10px;border:1px solid rgba(200,255,71,0.4);">
+                <div class="wf-text sm" style="width:30%;background:#9ED626;margin-bottom:3px;"></div>
+                <div class="wf-text sm" style="width:100%;"></div>
+                <div class="wf-text sm" style="width:90%;"></div>
+                <div class="wf-text sm" style="width:60%;"></div>
+              </div>
+            </div>
+            <div style="align-self:flex-end;max-width:80%;">
+              <div style="background:#141414;border-radius:14px 14px 4px 14px;padding:8px 10px;">
+                <div class="wf-text sm" style="width:80%;background:#DDD6C8;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Suggestions rapides -->
+          <div style="display:flex;gap:4px;overflow:hidden;margin-bottom:6px;">
+            <div class="wf-chip" style="height:24px;width:70px;border-radius:12px;flex-shrink:0;"></div>
+            <div class="wf-chip" style="height:24px;width:80px;border-radius:12px;flex-shrink:0;"></div>
+            <div class="wf-chip" style="height:24px;width:60px;border-radius:12px;flex-shrink:0;"></div>
+          </div>
+          <!-- Input -->
+          <div style="display:flex;gap:6px;align-items:center;">
+            <div class="wf-input" style="flex:1;margin:0;height:36px;border-radius:18px;"></div>
+            <div class="wf-circle accent" style="width:36px;height:36px;flex-shrink:0;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Coach IA · Chat</div>
+    </div>
+    <div class="arrow-connector" style="margin-top:0;">↔</div>
+
+    <!-- S22: Notifications / Suggestions -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">22</div>
+        <div class="phone-screen">
+          <div class="wf-text xl" style="width:65%;margin-bottom:8px;"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <!-- Notif card accent -->
+            <div style="background:#EAF5D0;border-radius:14px;padding:10px;display:flex;gap:8px;align-items:flex-start;border:1px solid rgba(200,255,71,0.5);">
+              <div class="wf-rect dark" style="width:32px;height:32px;border-radius:9px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:40%;background:#9ED626;margin-bottom:3px;"></div><div class="wf-text sm" style="width:100%;"></div><div class="wf-text sm" style="width:80%;"></div><div class="wf-text sm" style="width:30%;background:#9A9188;"></div></div>
+            </div>
+            <div style="background:#F7F3EE;border-radius:14px;padding:10px;display:flex;gap:8px;align-items:flex-start;">
+              <div class="wf-circle" style="width:32px;height:32px;background:#E8E2D9;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:60%;margin-bottom:3px;"></div><div class="wf-text sm" style="width:90%;"></div><div class="wf-text sm" style="width:30%;background:#9A9188;"></div></div>
+            </div>
+            <div style="background:#F7F3EE;border-radius:14px;padding:10px;display:flex;gap:8px;align-items:flex-start;">
+              <div class="wf-circle" style="width:32px;height:32px;background:#E8E2D9;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:55%;margin-bottom:3px;"></div><div class="wf-text sm" style="width:85%;"></div><div class="wf-text sm" style="width:30%;background:#9A9188;"></div></div>
+            </div>
+            <div style="background:#F7F3EE;border-radius:14px;padding:10px;display:flex;gap:8px;align-items:flex-start;opacity:0.6;">
+              <div class="wf-circle" style="width:32px;height:32px;background:#E8E2D9;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:65%;margin-bottom:3px;"></div><div class="wf-text sm" style="width:80%;"></div><div class="wf-text sm" style="width:30%;background:#9A9188;"></div></div>
+            </div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Notifications · Suggestions IA</div>
+    </div>
+
+  </div>
+  <div class="flow-note">→ L'IA génère des suggestions proactives (rappels hydratation, timing repas, récupération). Le chat permet des questions libres en langage naturel.</div>
+</div>
+
+<!-- ────────────────────────────────── -->
+<!-- FLOW 8: PROFIL & PARAMÈTRES -->
+<!-- ────────────────────────────────── -->
+<div class="flow-section">
+  <div class="flow-label">Flow 08 — Profil & Paramètres</div>
+  <div class="flow-title">Profil utilisateur · Réglages · Abonnement Premium</div>
+  <div class="screens-row">
+
+    <!-- S23: Profil -->
+    <div class="phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="screen-num">23</div>
+        <div class="phone-screen">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div class="wf-circle" style="width:52px;height:52px;background:#DDD6C8;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div class="wf-text xl" style="width:70%;margin-bottom:3px;"></div>
+              <div class="wf-text sm" style="width:50%;background:#9A9188;"></div>
+            </div>
+            <div class="wf-rect" style="width:28px;height:28px;border-radius:8px;background:#F0EBE2;"></div>
+          </div>
+          <!-- Stats summary -->
+          <div style="display:flex;gap:5px;margin-bottom:10px;">
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text lg" style="width:50%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:70%;margin:0 auto;"></div></div>
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text lg" style="width:50%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:70%;margin:0 auto;"></div></div>
+            <div class="wf-card" style="flex:1;padding:8px;text-align:center;"><div class="wf-text lg" style="width:50%;margin:0 auto 2px;"></div><div class="wf-text sm" style="width:70%;margin:0 auto;"></div></div>
+          </div>
+          <!-- Menu items -->
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;align-items:center;gap:8px;padding:10px;background:white;border-radius:12px;border:1px solid #F0EBE2;">
+              <div class="wf-rect" style="width:24px;height:24px;border-radius:7px;background:#F0EBE2;flex-shrink:0;"></div>
+              <div class="wf-text" style="flex:1;"></div>
+              <div style="width:8px;height:8px;border-right:1.5px solid #DDD6C8;border-top:1.5px solid #DDD6C8;transform:rotate(45deg);"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px;background:white;border-radius:12px;border:1px solid #F0EBE2;">
+              <div class="wf-rect" style="width:24px;height:24px;border-radius:7px;background:#F0EBE2;flex-shrink:0;"></div>
+              <div class="wf-text" style="flex:1;"></div>
+              <div style="width:8px;height:8px;border-right:1.5px solid #DDD6C8;border-top:1.5px solid #DDD6C8;transform:rotate(45deg);"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px;background:white;border-radius:12px;border:1px solid #F0EBE2;">
+              <div class="wf-rect" style="width:24px;height:24px;border-radius:7px;background:#F0EBE2;flex-shrink:0;"></div>
+              <div class="wf-text" style="flex:1;"></div>
+              <div style="width:8px;height:8px;border-right:1.5px solid #DDD6C8;border-top:1.5px solid #DDD6C8;transform:rotate(45deg);"></div>
+            </div>
+            <!-- Premium banner -->
+            <div class="wf-card dark" style="padding:10px;display:flex;align-items:center;gap:8px;">
+              <div class="wf-rect accent" style="width:24px;height:24px;border-radius:7px;flex-shrink:0;"></div>
+              <div style="flex:1;"><div class="wf-text" style="width:70%;background:#F5F0E8;margin-bottom:3px;"></div><div class="wf-text sm" style="width:85%;background:#5C564E;"></div></div>
+              <div style="width:8px;height:8px;border-right:1.5px solid #C8FF47;border-top:1.5px solid #C8FF47;transform:rotate(45deg);"></div>
+            </div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-center"></div>
+            <div class="wf-nav-dot"></div>
+            <div class="wf-nav-dot active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Profil utilisateur</div>
+    </div>
+    <div class="arrow-connector">→</div>
+
+    <!-- S24: Premium / Abonnement -->
+    <div class="phone">
+      <div class="phone-frame" style="background:#141414;">
+        <div class="phone-notch" style="background:#333;"></div>
+        <div class="screen-num">24</div>
+        <div class="phone-screen" style="padding:28px 12px 12px;">
+          <div style="display:flex;justify-content:center;margin-bottom:10px;">
+            <div style="background:rgba(200,255,71,0.15);border-radius:12px;padding:5px 12px;">
+              <div class="wf-text sm" style="width:60px;background:#C8FF47;margin:0;"></div>
+            </div>
+          </div>
+          <div class="wf-text xl" style="width:75%;background:#F5F0E8;margin:0 auto 4px;text-align:center;"></div>
+          <div class="wf-text sm" style="width:85%;background:#5C564E;margin:0 auto 14px;"></div>
+          <!-- Plans -->
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+            <div style="background:#1E1E1E;border-radius:14px;padding:10px;border:2px solid #C8FF47;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <div class="wf-text" style="width:45%;background:#F5F0E8;"></div>
+                <div class="wf-text" style="width:30%;background:#C8FF47;"></div>
+              </div>
+              <div class="wf-text sm" style="width:60%;background:#5C564E;"></div>
+            </div>
+            <div style="background:#1E1E1E;border-radius:14px;padding:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <div class="wf-text" style="width:40%;background:#F5F0E8;"></div>
+                <div class="wf-text" style="width:30%;background:#9A9188;"></div>
+              </div>
+              <div class="wf-text sm" style="width:65%;background:#5C564E;"></div>
+            </div>
+          </div>
+          <!-- Features list -->
+          <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+            <div style="display:flex;gap:6px;align-items:center;"><div style="width:14px;height:14px;border-radius:50%;background:#C8FF47;flex-shrink:0;"></div><div class="wf-text sm" style="flex:1;background:#9A9188;margin:0;"></div></div>
+            <div style="display:flex;gap:6px;align-items:center;"><div style="width:14px;height:14px;border-radius:50%;background:#C8FF47;flex-shrink:0;"></div><div class="wf-text sm" style="flex:1;background:#9A9188;margin:0;"></div></div>
+            <div style="display:flex;gap:6px;align-items:center;"><div style="width:14px;height:14px;border-radius:50%;background:#C8FF47;flex-shrink:0;"></div><div class="wf-text sm" style="flex:1;background:#9A9188;margin:0;"></div></div>
+          </div>
+          <div style="margin-top:auto;"></div>
+          <div class="wf-btn accent" style="width:100%;"></div>
+          <div class="wf-text sm" style="width:50%;background:#5C564E;margin:6px auto 0;"></div>
+        </div>
+      </div>
+      <div class="phone-label">Abonnement · Premium</div>
+    </div>
+
+    <!-- LEGEND -->
+    <div style="margin-left:16px;padding:24px;background:white;border-radius:20px;border:1px solid #E8E2D9;max-width:200px;align-self:flex-start;margin-top:40px;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A9188;margin-bottom:14px;">Légende</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:12px;background:#2A2520;border-radius:2px;flex-shrink:0;"></div><div style="font-size:11px;color:#5C564E;">Fond sombre / Onyx</div></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:12px;background:#C8FF47;border-radius:2px;flex-shrink:0;"></div><div style="font-size:11px;color:#5C564E;">Accent acide / CTA</div></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:12px;background:#E8E2D9;border-radius:2px;flex-shrink:0;"></div><div style="font-size:11px;color:#5C564E;">Conteneur / Surface</div></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:12px;background:#EAF5D0;border-radius:2px;flex-shrink:0;"></div><div style="font-size:11px;color:#5C564E;">Suggestion IA</div></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:20px;height:12px;background:#F0EBE2;border-radius:2px;flex-shrink:0;"></div><div style="font-size:11px;color:#5C564E;">Fond écran</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="flow-note">→ 24 écrans couvrant les 8 flows principaux. Chaque flow est autonome et peut être consulté séparément.</div>
+</div>
+
+<!-- PAGE FOOTER -->
+<div style="padding:40px 60px;border-top:1.5px solid #DDD6C8;display:flex;justify-content:space-between;align-items:center;">
+  <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;">VITÁL</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;color:#9A9188;text-align:right;line-height:1.8;">
+    Wireframes · Basse fidélité · 24 écrans · 8 flows<br>
+    Application mobile · iOS & Android · Gen Z 25–35 ans<br>
+    Avril 2026
+  </div>
+</div>
+
+</body>
+</html>
