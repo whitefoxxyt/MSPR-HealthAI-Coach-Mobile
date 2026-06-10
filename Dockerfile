@@ -41,4 +41,4 @@ RUN mkdir -p /app/.expo
 EXPOSE 19000-19006
 
 # Command to start Expo development server with minimal config
-CMD ["npx", "expo", "start", "--lan", "--minify", "--no-install"]
+CMD ["npx", "expo", "start", "--lan", "--minify"]
